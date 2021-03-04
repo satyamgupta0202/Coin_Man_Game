@@ -12,6 +12,9 @@ public class CoinMan extends ApplicationAdapter {
 	Texture man[];
 	int manstate=0;
 	int pause =0;
+	float velocity = 0;
+	float gravity = 0.2f;
+	float manY = 0;
 	
 	@Override
 	public void create () {
@@ -22,6 +25,7 @@ public class CoinMan extends ApplicationAdapter {
 		man[1] = new Texture("frame-2.png");
 		man[2] = new Texture("frame-3.png");
 		man[3] = new Texture("frame-4.png");
+		manY=Gdx.graphics.getHeight() / 2;
 	}
 
 	@Override
@@ -39,11 +43,14 @@ public class CoinMan extends ApplicationAdapter {
 				manstate = 0;
 			}
 		}
-			batch.draw(man[manstate], Gdx.graphics.getWidth() / 2 - man[manstate].getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		velocity+=gravity;
+		manY-=velocity;
+		if(manY<=0){
+			manY=0;
+		}
+			batch.draw(man[manstate], Gdx.graphics.getWidth() / 2 - man[manstate].getWidth() / 2, manY);
 			batch.end();
-
 	}
-	
 	@Override
 	public void dispose () {
 		batch.dispose();
