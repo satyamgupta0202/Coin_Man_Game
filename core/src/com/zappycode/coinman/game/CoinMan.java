@@ -8,16 +8,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class CoinMan extends ApplicationAdapter {
 	SpriteBatch batch;
-
+	Texture background;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
+		background = new Texture("bg.png");
 	}
 
 	@Override
 	public void render () {
+		batch.begin();
+		batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+		batch.end();
 
 	}
 	
