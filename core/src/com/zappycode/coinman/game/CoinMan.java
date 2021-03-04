@@ -10,6 +10,7 @@ public class CoinMan extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture background;
 	Texture man[];
+	int manstate;
 	
 	@Override
 	public void create () {
@@ -26,7 +27,13 @@ public class CoinMan extends ApplicationAdapter {
 	public void render () {
 		batch.begin();
 		batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-		batch.draw(man[0],Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
+		if(manstate<3){
+			manstate++;
+		}
+		else {
+			manstate=0;
+		}
+		batch.draw(man[manstate],Gdx.graphics.getWidth()/2-man[manstate].getWidth()/2,Gdx.graphics.getHeight()/2);
 		batch.end();
 
 	}
