@@ -85,19 +85,19 @@ public class CoinMan extends ApplicationAdapter {
 		}
 
 
-
+		coinRectangle.clear();
 		for(int i=0;i<coinsX.size();i++){
 			batch.draw(coin,coinsX.get(i),coinsY.get(i));
 			coinsX.set(i,coinsX.get(i)-4);
 			coinRectangle.add(new Rectangle(coinsX.get(i),coinsY.get(i),Gdx.graphics.getHeight(),Gdx.graphics.getWidth()));
 		}
+
+		bombRectangle.clear();
 		for(int i=0;i<bombsX.size();i++){
 			batch.draw(bomb,bombsX.get(i),bombsY.get(i));
 			bombsX.set(i,bombsX.get(i)-7);
 			bombRectangle.add(new Rectangle(bombsX.get(i),bombsY.get(i),Gdx.graphics.getHeight(),Gdx.graphics.getWidth()));
 		}
-
-
 
 		if(Gdx.input.justTouched()){
 			velocity=-10;
@@ -120,6 +120,7 @@ public class CoinMan extends ApplicationAdapter {
 		}
 			batch.draw(man[manstate], Gdx.graphics.getWidth() / 2 - man[manstate].getWidth() / 2, manY);
 			manRectangle = new Rectangle(Gdx.graphics.getWidth() / 2 - man[manstate].getWidth() / 2, manY , Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+
 			for(int i=0;i<coinRectangle.size();i++){
 				if(Intersector.overlaps(manRectangle,coinRectangle.get(i))){
 					Gdx.app.log("coins-Overlapped","COLLISION!!!!!");
